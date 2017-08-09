@@ -1,0 +1,57 @@
+body {
+font-family:arial;
+margin:0px;
+padding:0px;
+background-repeat:no-repeat;
+background-color: rgb(150,150,150);
+background-position:center top;
+
+}
+
+#maincontainer {
+    background-color: white;
+    margin: auto;
+    width: 55%;
+    border: solid black;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 50px;
+    padding-bottom: 45px;
+    
+}
+
+#maincontainer button {
+    float: right;
+    width: 20%;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#maincontainer button:hover {
+    background-color: rgb(25,75,255);
+    color: white;
+}
+
+
+.inputfield {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.inputfield input{
+    width: 75%;
+    height: 35px;
+}
+
+.inputfield textarea{
+    width: 75%;
+    height: 100px;
+}
+
+.inputfield select{
+    width: 35%;
+    height: 35px;
+}
+
+
