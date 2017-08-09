@@ -12,17 +12,34 @@ def get_resource_as_string(name, charset='utf-8'):
 app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
 
 
+def readfromcsv(filepath):
+    result = []
+
+    try:
+        reader = csv.reader(open(filepath, 'r'))
+    except FileNotFoundError:
+        return []
+    for row in reader:
+        result.append(row)
+
+    return result
+
+
 def savetocsv(dictionary):
+    filecontents = readfromcsv('storydata.csv')
+
     FORM_ITEMS = ['title', 'userstory', 'acceptance', 'status']  # sets the order of saving items
-    output = []
+    newinput = []
     for item in FORM_ITEMS:
         if(item in dictionary.keys()):
-            output.append(dictionary[item])
+            newinput.append(dictionary[item])
         else:
             return False
-
+    filecontents.append(newinput)
     writer = csv.writer(open('storydata.csv', 'w'))
-    writer.writerow(output)
+
+    for item in filecontents:
+        writer.writerow(item)
     return True
 
 
