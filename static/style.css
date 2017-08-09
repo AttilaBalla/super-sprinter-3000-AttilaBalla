@@ -11,7 +11,7 @@ background-position:center top;
 #maincontainer {
     background-color: white;
     margin: auto;
-    width: 55%;
+    width: 45%;
     border: solid black;
     padding-left: 30px;
     padding-right: 30px;
@@ -33,15 +33,15 @@ background-position:center top;
     color: white;
 }
 
-
 .inputfield {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-.inputfield input{
+.inputfield input[type=text]{
     width: 75%;
     height: 35px;
+    font-size: 15px;
 }
 
 .inputfield textarea{
@@ -49,9 +49,14 @@ background-position:center top;
     height: 100px;
 }
 
-.inputfield select{
+.inputfield select, [type=number]{
     width: 35%;
     height: 35px;
+    font-size: 16px;
+    padding: 5px;
+    padding-left: 15px;
 }
 
-
+.inputfield input[type=number]::-webkit-inner-spin-button{
+    opacity: 1;
+}

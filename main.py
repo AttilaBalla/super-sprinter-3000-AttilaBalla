@@ -28,7 +28,8 @@ def readfromcsv(filepath):
 def savetocsv(dictionary):
     filecontents = readfromcsv('storydata.csv')
 
-    FORM_ITEMS = ['title', 'userstory', 'acceptance', 'status']  # sets the order of saving items
+    FORM_ITEMS = ['title', 'userstory', 'acceptance', 'status', 'quantity', 'estimation']
+    # sets the order of saving items
     newinput = []
     for item in FORM_ITEMS:
         if(item in dictionary.keys()):
