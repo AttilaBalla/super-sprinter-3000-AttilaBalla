@@ -33,6 +33,19 @@ background-position:center top;
     color: white;
 }
 
+table {
+    background-color: white;
+    border: solid black;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+table th, table td{
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
 .inputfield {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -60,3 +73,4 @@ background-position:center top;
 .inputfield input[type=number]::-webkit-inner-spin-button{
     opacity: 1;
 }
+

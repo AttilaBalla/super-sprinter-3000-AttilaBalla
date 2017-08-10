@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, session
 import csv
 
+FILEPATH = 'storydata.csv'
 app = Flask(__name__)
 app.secret_key = 'ITSSOSECRETDONTTELLANYONE'
 
@@ -26,11 +27,11 @@ def readfromcsv(filepath):
 
 
 def savetocsv(dictionary):
-    filecontents = readfromcsv('storydata.csv')
-
-    FORM_ITEMS = ['title', 'userstory', 'acceptance', 'status', 'quantity', 'estimation']
+    filecontents = readfromcsv(FILEPATH)
+    FORM_ITEMS = ['title', 'userstory', 'acceptance', 'quantity', 'estimation', 'status']
     # sets the order of saving items
-    newinput = []
+    newinput = [str(len(filecontents)+1)]  # this will be the ID
+
     for item in FORM_ITEMS:
         if(item in dictionary.keys()):
             newinput.append(dictionary[item])
@@ -46,7 +47,8 @@ def savetocsv(dictionary):
 
 @app.route('/')
 def route_index():
-    return render_template('list.html')
+    data = readfromcsv(FILEPATH)
+    return render_template('list.html', data=data)
 
 
 @app.route('/story')
@@ -67,7 +69,7 @@ def route_save():
         print('Data saved successfully!')
     else:
         print('An error occured when saving the data!')
-    return redirect('/story')
+    return redirect('/')
 
 
 if __name__ == "__main__":

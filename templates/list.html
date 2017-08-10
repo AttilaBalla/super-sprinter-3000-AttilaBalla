@@ -1,9 +1,31 @@
 <html>
     <title>Super Sprinter 3000</title>
+    <style type=text/css>{{ get_resource_as_string('static/style.css') }}</style>
 <head>
 </head>
 <body>
+    <h2>User Story Manager</h2>
+    <a href="/story">Add Story</a>
     <table>
+        <tr>
+            <th>ID</th>
+            <th>Story Title</th>
+            <th>Story description</th>
+            <th>Acceptance criteria</th>
+            <th>Business value</th>
+            <th>Estimation(h)</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for list in data %} 
+            <tr>
+            {% for item in list %}
+               <td>{{ item }}</td>
+            {% endfor %}
+            <td><a href="/story/{{ list[0] }}">edit</td>
+            </tr>
+        {% endfor %}
+
     </table>
 </body>
 </html>
