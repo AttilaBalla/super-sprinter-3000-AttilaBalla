@@ -22,7 +22,10 @@
             {% for item in list %}
                <td>{{ item }}</td>
             {% endfor %}
-            <td><a href="/story/{{ list[0] }}">edit</td>
+            <td>
+                <a href="/story/{{ list[0] }}">edit</a>
+                <a href="/story/{{ list[0] }}">delete</a>
+            </td>
             </tr>
         {% endfor %}
 

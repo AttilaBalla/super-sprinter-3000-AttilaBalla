@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session
 import csv
 
 FILEPATH = 'storydata.csv'
+
 app = Flask(__name__)
 app.secret_key = 'ITSSOSECRETDONTTELLANYONE'
 
@@ -52,8 +53,21 @@ def route_index():
 
 
 @app.route('/story')
-def route_edit():
-    return render_template('form.html')
+def route_create():
+    return render_template('form.html', data=[])
+
+
+@app.route('/story/<story_id>')
+def route_edit(story_id):
+    data = readfromcsv(FILEPATH)
+
+    try:
+        id = int(story_id)
+    except ValueError:
+        return render_template('list.html', data=data, select=selectlist)
+
+    print(data[id-1])
+    return render_template('form.html', data=data[id-1])
 
 
 @app.route('/save-story', methods=['POST'])
