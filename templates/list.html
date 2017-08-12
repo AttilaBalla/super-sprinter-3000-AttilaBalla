@@ -1,21 +1,25 @@
 <html>
     <title>Super Sprinter 3000</title>
-    <style type=text/css>{{ get_resource_as_string('static/style.css') }}</style>
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
 <head>
 </head>
 <body>
-    <h2>User Story Manager</h2>
-    <a href="/story">Add Story</a>
+    <div id="top-panel">
+        <h2>User Story Manager</h2>
+        <div class="linkbutton">
+            <a href="/story">Add Story</a>
+        </div>
+    </div>
     <table>
         <tr>
             <th>ID</th>
-            <th>Story Title</th>
+            <th width="150">Story Title</th>
             <th>Story description</th>
             <th>Acceptance criteria</th>
             <th>Business value</th>
             <th>Estimation(h)</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th width="100">Actions</th>
         </tr>
         {% for list in data %} 
             <tr>
@@ -23,8 +27,8 @@
                <td>{{ item }}</td>
             {% endfor %}
             <td>
-                <a href="/story/{{ list[0] }}">edit</a>
-                <a href="/delete/{{ list[0] }}">delete</a>
+                <a href="/story/{{ list[0] }}"><img src="/static/editn.png" width="30" height="30"></a>
+                <a href="/delete/{{ list[0] }}"><img src="/static/delete.png" width="30" height="30"></a>
             </td>
             </tr>
         {% endfor %}

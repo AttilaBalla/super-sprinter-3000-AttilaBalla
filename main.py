@@ -8,13 +8,6 @@ form_selectkeys = ['planning', 'to-do', 'in-progress', 'review', 'done']
 app = Flask(__name__)
 
 
-def get_resource_as_string(name, charset='utf-8'):
-    with app.open_resource(name) as f:
-        return f.read().decode(charset)
-
-app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
-
-
 def makeselectblock(selectkeys, selectedoption=None):
 
     result = []
@@ -29,6 +22,17 @@ def makeselectblock(selectkeys, selectedoption=None):
                 result[index] = ('"{}" selected'.format(selectedoption), selectedoption)
                 break
         return result
+
+
+def generate_id(data):
+    existingids = []
+    for item in data:
+        existingids.append(int(item[0]))
+
+    if(existingids):
+        return str(max(existingids)+1)
+    else:
+        return '1'
 
 
 def readfromcsv(filepath):
@@ -46,7 +50,9 @@ def readfromcsv(filepath):
 
 def savetocsv(dictionary):
     filecontents = readfromcsv(FILEPATH)
-    newinput = [str(len(filecontents)+1)]  # this will be the ID
+
+    newitem_id = generate_id(filecontents)
+    newinput = [newitem_id]
 
     for item in FORM_ITEMS:
         if(item in dictionary.keys()):
@@ -97,16 +103,20 @@ def route_create():
 @app.route('/story/<story_id>')
 def route_edit(story_id):
     data = readfromcsv(FILEPATH)
-    try:
-        _id = int(story_id)
-    except ValueError:
+    row_list = []
+    for index, item in enumerate(data):
+        if(item[0] == story_id):
+            row_list = data[index]
+            print(row_list)
+            print(len(row_list))
+            break
+
+    if(row_list):
+        selected = row_list[-1]
+        return render_template('form.html', data=row_list,
+                               selectdata=makeselectblock(form_selectkeys, selected))
+    else:
         return render_template('list.html', data=data)
-
-    row_list = data[_id-1]
-    selected = row_list[-1]
-
-    return render_template('form.html', data=row_list,
-                           selectdata=makeselectblock(form_selectkeys, selected))
 
 
 @app.route('/edit-story', methods=['POST'])
