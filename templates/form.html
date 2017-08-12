@@ -6,8 +6,15 @@
 </head>
 <body>
     <div id="maincontainer">
+    {% if data is not none %} 
+        <h2>User Story manager - Edit existing Story</h2>
+        <form action="/edit-story" method="post">
+            <input type="hidden" name="id" value="{{ data[0] }}">
+    {% else %}
         <h2>User Story manager - Add new Story</h2>
         <form action="/save-story" method="post">
+    {% endif %}
+
             <div class="inputfield">
                 <label for="title">Story Title</label><br>
                     <input type="text" name="title" id="title" value="{{ data[1] }}" required/>
@@ -23,11 +30,9 @@
             <div class="inputfield">
                 <label for="status">Status</label><br>
                 <select name="status">
-                    <option value="planning">Planning</option>
-                    <option value="todo">To Do</option>
-                    <option value="inprogress">In Progress</option>
-                    <option value="review">Review</option>
-                    <option value="done">Done</option>
+                    {% for item in selectdata %}
+                        <option value= {{ item[0] }} > {{ item[1] }} </option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="inputfield">
@@ -39,7 +44,11 @@
                 <label for="esitmation">Estimation(h)</label><br>
                     <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="{{ data[5] }}">
             </div>
-            <button type="submit">Create</button>
+            {% if data is not none %} 
+                <button type="submit">Save Changes</button>
+            {% else %}
+                <button type="submit">Create Story</button>
+            {% endif %}    
         </form>
     </div>
 </body>

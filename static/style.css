@@ -3,7 +3,7 @@ font-family:arial;
 margin:0px;
 padding:0px;
 background-repeat:no-repeat;
-background-color: rgb(150,150,150);
+background-color: rgb(180,180,180);
 background-position:center top;
 
 }
@@ -12,7 +12,7 @@ background-position:center top;
     background-color: white;
     margin: auto;
     width: 45%;
-    border: solid black;
+    border: solid grey;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 50px;
@@ -35,20 +35,20 @@ background-position:center top;
 
 table {
     background-color: white;
-    border: solid black;
+    border: thin solid grey;
     border-collapse: collapse;
     margin: auto;
     width: 95%;
 }
 
 table th, table td{
-    border: 1px solid black;
+    border: 1px solid grey;
     text-align: left;
     padding: 8px;
 }
 
 table tr:nth-child(even) {
-    background-color: rgb(200,200,200);
+    background-color: rgb(220,220,220);
 }
 
 .inputfield {
